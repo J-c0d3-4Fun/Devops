@@ -1,0 +1,7 @@
+services:
+  web:
+# References the image in the Dockerfile
+    image: jabaribrown01/d3v0ps:1 
+# Opens port 4000 from the localhost and binds it to tcp port 80 on the container
+    ports:
+      - 4000:80
