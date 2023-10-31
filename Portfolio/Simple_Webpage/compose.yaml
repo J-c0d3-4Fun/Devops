@@ -1,0 +1,7 @@
+services:
+  web:
+  # Uses the local Dockerfile to create an image, "." represents the current directory
+    build: .
+  # Opens port 4000 on localhost and binds tcp port 80 from the container
+    ports:
+      - 4000:80
