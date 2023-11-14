@@ -1,7 +1,8 @@
 services:
+#This type of servie is a web service
   web:
-  # Uses the local Dockerfile to create an image, "." represents the current directory
+# Build the Docker image using the Dockerfile in the current directory
     build: .
-  # Opens port 4000 on localhost and binds tcp port 80 from the container
+# Map port 4000 on the host to port 80 on the container
     ports:
       - 4000:80
