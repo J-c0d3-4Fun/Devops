@@ -1,6 +1,8 @@
-# Pulls the latest NGINX image from Docker Hub
+#This uses the latest image of NGINX
 FROM nginx:latest
-# Changes the working directory in the container, this directory is a a common location where web content is served from within the Nginx web server
+#The working directory for where the container will run the commands, this directory usually host the html for NGINX Web Servers
 WORKDIR /usr/share/nginx/html/
-# Copies the current directories HTML file to the NGINX web server 
 COPY index.html index.html
+#This creates a css folder in the usr/share/nginx/html/ directory and copies my local css file to that new folder
+RUN  mkdir css
+COPY ./css/styles.css css/styles.css
