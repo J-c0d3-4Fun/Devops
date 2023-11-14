@@ -1,0 +1,53 @@
+---
+#refernces the group in the inventory.yaml file
+- hosts: virtualmachines
+  become: true
+  tasks:
+#installs the required software
+    - name: install dependency
+      apt:
+        name: "{{item}}"
+        state: present
+        update_cache: yes
+      loop:
+        - apt-transport-https
+        - ca-certificates
+        - curl
+        - gnupg-agent
+        - software-properties-common
+#adds the gpg key from docs.docker.com
+    - name: add debian gpg key 
+      apt_key:
+        url: https://download.docker.com/linux/debian/gpg
+        state: present
+#adds the docker repo to apt package installer
+    - name: add docker repository to apt
+      apt_repository:
+        repo: deb https://download.docker.com/linux/debian bookworm stable
+        state: present
+#Installs docker software, docker cli , docker compose and container.io
+    - name: install docker, docker-cli and container.io
+      apt:
+#Item is a placeholder that gets replaced with each element of the loop
+        name: "{{item}}"
+        state: latest
+        update_cache: yes
+      loop:
+        - docker-ce
+        - docker-ce-cli
+        - containerd.io
+        - docker-compose
+#runs a check to determine docker has been started and enabled
+    - name: confirm docker is started and enabled
+      service:
+        name: docker
+        state: started
+        enabled: yes
+
+  handlers:
+    - name: restart docker
+      service: 
+        name: docker 
+        state: restarted
+        when: "'docker' in changed_tasks.results | map(attribute='task.name') | list"
+        #makes the script idempotent by verifying the task of checking if docker has been started
