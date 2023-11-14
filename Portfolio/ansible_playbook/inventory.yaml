@@ -1,0 +1,9 @@
+#Set the group name for the Inventory here
+virtualmachines:
+#hosts = the instances/vms/images you're trying to target
+  hosts:
+#this is a child of the group, follows Ansible best practice of naming each instance
+    debian_test:
+#the IP of the instance your are trying to reach
+      ansible_host: "Managed Node IP GOES HERE"
+     
