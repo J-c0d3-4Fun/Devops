@@ -8,7 +8,7 @@ resource "aws_security_group" "allow_ssh_apache" {
     from_port        = 22
     to_port          = 22
     protocol         = "tcp"
-    cidr_blocks      = ["73.7.228.18/32","172.31.34.97/32"]
+    cidr_blocks      = ["ip goes here"]
     #ipv6_cidr_blocks = ["::/0"]
   }
 
@@ -28,7 +28,7 @@ resource "aws_security_group" "allow_ssh_apache" {
     from_port        = 80
     to_port          = 80
     protocol         = "tcp"
-    cidr_blocks      = ["172.31.31.54/32"]
+    cidr_blocks      = ["ip goes here"]
     #ipv6_cidr_blocks = ["::/0"]
   }
 }
@@ -44,7 +44,7 @@ resource "aws_security_group" "allow_ssh" {
     from_port        = 22
     to_port          = 22
     protocol         = "tcp"
-    cidr_blocks      = ["73.7.228.18/32","172.31.34.97/32"]
+    cidr_blocks      = ["ip goes here"]
     #ipv6_cidr_blocks = ["::/0"]
   }
 
