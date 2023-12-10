@@ -1,0 +1,22 @@
+---
+#Top level group is all which will be used to do patching at the OS level
+all:
+  hosts:
+    nginx:
+      ansible_host: 172.31.31.54
+    apache:
+      ansible_host: your_apache_server_ip
+#Creates a webserver group that has a nested ngix_server group that targets the nginx host
+webservers:
+  hosts:
+    nginx-server:
+      ansible_host: 172.31.31.54
+#Creates a webappserver group that has a nested apache_server group that targets the apache host
+webappserver:
+  hosts:
+    apache-server:
+      ansible_host: your_apache_server_ip
+
+
+
+
