@@ -3,14 +3,14 @@
 all:
   hosts:
     nginx:
-      ansible_host: 172.31.31.54
+      ansible_host: your ip goes here
     apache:
       ansible_host: your_apache_server_ip
 #Creates a webserver group that has a nested ngix_server group that targets the nginx host
 webservers:
   hosts:
     nginx-server:
-      ansible_host: 172.31.31.54
+      ansible_host: your ip goes here
 #Creates a webappserver group that has a nested apache_server group that targets the apache host
 webappserver:
   hosts:
