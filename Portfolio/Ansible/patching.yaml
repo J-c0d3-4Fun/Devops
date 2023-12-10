@@ -1,0 +1,15 @@
+---
+- name: Patching
+  hosts: all
+  become: true
+  tasks:
+    - name: Finding Dependencies
+      apt:
+        upgrade: yes
+        update_cache: yes
+  
+  handlers:
+    - name: Update Packages 
+      debug:
+          msg: "Package has been updated"
+

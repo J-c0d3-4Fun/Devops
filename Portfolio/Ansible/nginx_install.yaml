@@ -1,0 +1,37 @@
+---
+- name: nginx install
+  hosts: webservers
+  remote_user: admin
+  become: true
+  tasks:
+    - name: Install pre-requisites 
+      apt:
+        name: "{{ item }}"
+        state: latest
+        update_cache: yes
+      loop:
+        - curl 
+        - gnupg 
+        - ca-certificates
+        - lsb-release 
+        - debian-archive-keyring
+    - name: Get nginx package
+      apt_key:
+        url: https://nginx.org/keys/nginx_signing.key
+        state: present
+    - name: Installing NGINX onto webservers
+      apt:
+        name: nginx
+        state: latest
+    - name: confirm nginx is started and enabled
+      service:
+        name: nginx
+        state: started
+        enabled: yes
+
+  handlers:
+    - name: Restart nginx
+      ansible.builtin.service:
+        name: nginx
+        state: restarted
+

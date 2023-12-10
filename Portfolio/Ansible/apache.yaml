@@ -1,0 +1,20 @@
+---
+- name: Install Apache
+  hosts: webappserver
+  become: true
+  tasks:
+    - name: Install Apache on Web Server 
+      apt: 
+        name: apache2
+        update_cache: yes
+    - name: confirm apache is enabled and started
+      systemd:
+        name: apache2
+        state: started
+        enabled: yes
+  
+  handlers:
+    - name: Restart apache
+      systemd:
+        name: apache2
+        state: restarted
